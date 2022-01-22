@@ -1,21 +1,10 @@
 <?php  
-$dir = "D:\RetroPie\RetroPieSync\192.168.1.148\roms\arcade";//"/home/pi/RetroPie/roms/arcade";    
+$dir = 'C:\temp';//D:\RetroPie\RetroPieSync\\192.168.1.148\\roms\arcade";//"/home/pi/RetroPie/roms/arcade";    
+$string = file_get_contents("/neogeo.json");
+$array = json_decode($string, true);
+$one_item = $array[rand(0, count($array) - 1)];
+$one_item_string = json_encode($one_item);
+echo $one_item_string;
 
-function scan($dir){ 
-   $result = array(); 
-   foreach(scandir($dir) as $key => $value){ 
-      if(!empty($value) and !in_array($value, array(".", ".."))){ 
-         if(is_dir($dir.DIRECTORY_SEPARATOR.$value)){ 
-            $result[$value] = scan($dir.DIRECTORY_SEPARATOR.$value); 
-         } 
-         else{ 
-            $result[] = $value; 
-         } 
-      } 
-   }  
-   return $result; 
-} 
-
-echo json_encode((array)scan($dir), JSON_UNESCAPED_UNICODE);
 
 ?>

@@ -1,4 +1,9 @@
 <?php  
+
+function isWeekend($date) {
+    return (date('N', strtotime($date)) >= 6);
+}
+
 $romdatfilepath = '/var/www/html/neogeo.json';//D:\RetroPie\RetroPieSync\\192.168.1.148\\roms\arcade";//"/home/pi/RetroPie/roms/arcade";    
 
 $rom_emu_path = '/home/pi/RetroPie/roms/arcade';
@@ -8,9 +13,16 @@ if (isset($_GET['emu'])) {
     //echo "emu exists:" . $_GET['emu'];
     $emu = $_GET['emu'];
 } else {
-    //echo "emu is fba";
     $emu = "fba";
 }
+
+// if ((int)date('w') >= 4) {
+//     //echo "emu is fba";
+//     $emu = "fba";
+// } else {
+//     //echo "emu is fba";
+//     //$emu = "fba";
+//  }
 
 switch (strtolower($emu)) {
     case "fba":
